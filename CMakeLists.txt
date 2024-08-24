@@ -29,27 +29,27 @@ set(dependencies rclcpp sensor_msgs std_msgs tf2 tf2_ros tf2_sensor_msgs geometr
 add_executable(frontal_free_pc src/frontal_free_pc.cpp)
 ament_target_dependencies(frontal_free_pc ${dependencies})
 
-# add_library(frontal_free_pc_component SHARED src/component_node.cpp)
-# ament_target_dependencies(frontal_free_pc_component ${dependencies} rclcpp_components)
-# rclcpp_components_register_nodes(frontal_free_pc_component "free_pc_ns::FrontalFreePC")
+add_library(frontal_free_pc_component SHARED src/component_node.cpp)
+ament_target_dependencies(frontal_free_pc_component ${dependencies} rclcpp_components)
+rclcpp_components_register_nodes(frontal_free_pc_component "free_pc_ns::FrontalFreePC")
 
 
 install(TARGETS
   frontal_free_pc
-  # frontal_free_pc_component
+  frontal_free_pc_component
   DESTINATION lib/${PROJECT_NAME}
 
   # Needed for composition
-  # ARCHIVE DESTINATION lib
-  # LIBRARY DESTINATION lib
-  # RUNTIME DESTINATION bin
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
   )
 
 install(DIRECTORY launch params
   DESTINATION share/${PROJECT_NAME}
 )
 
-ament_package()
+ament_package() #Required for component but optional for node
 
 # After building correctly, if $ ros2 component types
 # The component will be listed
