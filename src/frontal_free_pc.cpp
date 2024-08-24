@@ -49,7 +49,7 @@ class FrontalFreePC : public rclcpp::Node
 
       // Checking if namespace provided
       std::string ns = this->get_namespace();
-      if (ns.size()>1){
+      if(ns.size() > 1){
         RCLCPP_INFO(this->get_logger(), "The provided namespace is: %s", ns.c_str());
         debug_point_topic_ = ns+"/"+debug_point_topic_;
       }
