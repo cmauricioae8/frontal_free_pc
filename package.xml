@@ -19,6 +19,8 @@
   <depend>geometry_msgs</depend>
   <depend>visualization_msgs</depend>
 
+  <depend>rclcpp_components</depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>

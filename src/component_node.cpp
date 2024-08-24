@@ -3,6 +3,17 @@
 
 @author: C. Mauricio Arteaga-Escamilla
 
+
+To test this component without using the 'component_launch.py'
+
+In one terminal:
+$ ros2 run rclcpp_components component_container   #Create a component container
+
+In another terminal:
+$ ros2 component load /ComponentManager frontal_free_pc free_pc_ns::FrontalFreePC   # To load (start) the component
+$ ros2 component unload /ComponentManager <component_ID>   # To unload (finish) the component
+
+
 ToDo:
 + Split into include folder
 + 
@@ -26,11 +37,12 @@ ToDo:
 std::string node_name = "frontal_free_pc";
 using namespace std::chrono_literals;
 
+namespace free_pc_ns {
 
 class FrontalFreePC : public rclcpp::Node
 {
     public:
-    FrontalFreePC() : Node(node_name)
+    FrontalFreePC(const rclcpp::NodeOptions &options) : Node(node_name, options)
     {
         auto sensor_QoS = rclcpp::SensorDataQoS();
         auto default_QoS = rclcpp::SystemDefaultsQoS();
@@ -91,7 +103,7 @@ class FrontalFreePC : public rclcpp::Node
         RCLCPP_INFO(this->get_logger(), "Node initialized");
     }
 
-    ~FrontalFreePC(){ RCLCPP_INFO(this->get_logger(), "Node finished"); }
+    ~FrontalFreePC(){ RCLCPP_INFO(this->get_logger(), "Component finished"); }
 
     void timer_function()
     {
@@ -231,13 +243,7 @@ class FrontalFreePC : public rclcpp::Node
         double min_val_pc_ant_ = 0, alpha_, bias_ = 0.01;
 };
 
-int main(int argc, char * argv[])
-{
-    rclcpp::init(argc, argv);
-    auto frontal_free_pc_node = std::make_shared<FrontalFreePC>();
+} // namespace frontal_pc_ns
 
-    rclcpp::spin(frontal_free_pc_node);
-
-    rclcpp::shutdown();
-    return 0;
-}
+#include "rclcpp_components/register_node_macro.hpp"
+RCLCPP_COMPONENTS_REGISTER_NODE(free_pc_ns::FrontalFreePC)
