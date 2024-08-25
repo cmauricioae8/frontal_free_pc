@@ -1,6 +1,10 @@
 
 # frontal_free_pc
 
+ToDo:
++ Finish the README.md (explained in detail)
+
+
 Package with the 'frontal_free_pc' functionality using node and node component.
 
 

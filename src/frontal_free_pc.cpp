@@ -8,8 +8,6 @@ ToDo:
 * Modify node_launch.py to use a yaml file
 * Create and destroy topic to debug
 * Check ns
-+ Split into include folder
-+ Finish the README.md (explained in detail)
 */
 
 #include <rclcpp/rclcpp.hpp>
