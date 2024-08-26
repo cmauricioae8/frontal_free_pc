@@ -18,7 +18,7 @@ def generate_launch_description():
             ComposableNode(
                 package='frontal_free_pc',
                 plugin='free_pc_ns::FrontalFreePC',
-                # namespace='r1',
+                namespace='',
                 remappings=[('cloud', 'camera/points')],
                 parameters=[os.path.join( pkg_dir, 'params', 'parameters.yaml')],
                 name='frontal_free_pc'

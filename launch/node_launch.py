@@ -13,7 +13,7 @@ def generate_launch_description():
     frontal_free_pc_node = Node(
         package=this_pkg,
         executable='frontal_free_pc',
-        remappings=[('cloud', 'camera/camera/depth/color/points'), ], #RGBD camera topic
+        remappings=[('cloud', 'camera/points'), ], #RGBD camera topic
         	# realsense: camera/camera/depth/color/points,
             # simulation: camera/points,
         parameters=[os.path.join( pkg_dir, 'params', 'parameters.yaml')],

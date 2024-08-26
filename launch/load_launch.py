@@ -1,4 +1,4 @@
-# launch to add a component to an existing container, if not exist, this launch will be waiting
+# launch to add a component to an existing container, if not exist, this launch will be waiting for it
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
@@ -17,7 +17,7 @@ def generate_launch_description():
                 package='frontal_free_pc',
                 plugin='free_pc_ns::FrontalFreePC',
                 name='frontal_free_pc2',
-                # namespace='r1',
+                namespace='',
                 remappings=[('cloud', 'camera/points')],
                 parameters=[os.path.join( pkg_dir, 'params', 'parameters.yaml')],
             ),

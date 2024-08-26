@@ -6,7 +6,7 @@
   <description>Package with the 'frontal_free_pc' functionality using node and node component</description>
   <maintainer email="cmauricioae8@gmail.com">C. Mauricio Arteaga Escamilla from "Robotica Posgrado" (YouTube channel)</maintainer>
   <license>Apache License 2.0</license>
-  <!-- <url type="repository">https://github.com/cmauricioae8</url> -->
+  <url type="repository">https://github.com/cmauricioae8/frontal_free_pc.git</url>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

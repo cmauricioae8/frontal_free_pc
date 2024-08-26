@@ -1,11 +1,11 @@
-/**: #it should be the node name
+/**: # It should be the node name
   ros__parameters:
     max_depth_x: 4.0 # maximum depth distance to consider a possible crash (in front of the robot)
-    robot_width: 0.8
+    robot_width: 0.8 # robot width
     min_height: 0.01 # minimum vertical distance to take into account an object in front
     max_height: 1.7 # maximum vertical distance to take into account an object in front
-    target_frame: "base_footprint"
-    debug_mode: True # ROS param to publish the nearest point computed by the node
+    target_frame: "base_footprint" # the target frame to validate robot size
+    debug_mode: True # ROS param to publish the nearest point, , for debug
     reduce_resolution: 1 # Resolution reducer to minimize the time to obtain the nearest point
     filter_gain: 0.1 # Filter gain in (0,1)
     use_sim_time: False

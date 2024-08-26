@@ -1,13 +1,21 @@
 /* 
-@description: 
+@description:
+This node computes the nearest point in front of a robot from 'cloud' topic, and publishes the distance 
+(along the depth axis) on 'frontal_free_pc' topic with 'std_msgs/msg/Float32' type.
+
+For debugging purposes, the nearest point is published on 'frontal_free_pc/point' topic 
+(visualization_msgs/msg/Marker), by the 'debug_mode' param. If debug_mode is False, the topic is removed.
+Some information about latency is shown in terminal.
+
+The 'reduce_resolution' param is used to reduce the required time of calculating point by skipping some 
+pixels (horizontal only).
+Every second, is check the frequency of the cloud topic input to guarantee data streaming.
+Since the pointcloud data could be noisy, a first order low-pass filter is implemented to computed the 
+depth distance of the nearest point.
+
+Note: This node is prepared to be used with namespace.
 
 @author: C. Mauricio Arteaga-Escamilla
-
-ToDo:
-* Implement ros param CB with validation
-* Modify node_launch.py to use a yaml file
-* Create and destroy topic to debug
-* Check ns
 */
 
 #include <rclcpp/rclcpp.hpp>
@@ -199,6 +207,7 @@ class FrontalFreePC : public rclcpp::Node
         }catch (const tf2::TransformException & ex) {
           RCLCPP_WARN( this->get_logger(), "Could not transform %s to %s: %s",
               target_frame_.c_str(), sensor_frame_.c_str(), ex.what());
+          RCLCPP_INFO(this->get_logger(), "Please check the TF tree to prevent any possible problem");
           return;
         } 
       }
@@ -274,8 +283,8 @@ class FrontalFreePC : public rclcpp::Node
         //marker_msg_.action = 3; // deletes all objects (or those with the given ns if any)
         marker_pub_->publish(marker_msg_);
 
-        RCLCPP_INFO( this->get_logger(), "x_min: %.3f,\ty_min: %.3f,\tz_min: %.3f", x_s_min,y_s_min,z_s_min);
-        RCLCPP_INFO( this->get_logger(), "lat: %.3f,\tcb_hz: %.2f", cb_latency_, cb_hz_);
+        RCLCPP_INFO(this->get_logger(), "x_min: %.3f,\ty_min: %.3f,\tz_min: %.3f", x_s_min,y_s_min,z_s_min);
+        RCLCPP_INFO(this->get_logger(), "lat: %.3f,\tcb_hz: %.2f", cb_latency_, cb_hz_);
       }
     }
 

@@ -1,16 +1,8 @@
 /* 
-@description: 
+@description:
+This component is the equivalent to the 'frontal_free_pc' node.
 
 @author: C. Mauricio Arteaga-Escamilla
-
-To test this component without using the 'component_launch.py'
-In one terminal:
-$ ros2 run rclcpp_components component_container   #Create a component container (with name /ComponentManager)
-
-In another terminal:
-$ ros2 component load /ComponentManager frontal_free_pc free_pc_ns::FrontalFreePC   # To load (start) the component
-$ ros2 component unload /ComponentManager <component_ID>   # To unload (finish) the component
-
 */
 
 #include <rclcpp/rclcpp.hpp>
@@ -203,6 +195,7 @@ class FrontalFreePC : public rclcpp::Node
         }catch (const tf2::TransformException & ex) {
           RCLCPP_WARN( this->get_logger(), "Could not transform %s to %s: %s",
               target_frame_.c_str(), sensor_frame_.c_str(), ex.what());
+          RCLCPP_INFO(this->get_logger(), "Please check the TF tree to prevent any possible problem");
           return;
         } 
       }
@@ -278,8 +271,8 @@ class FrontalFreePC : public rclcpp::Node
         //marker_msg_.action = 3; // deletes all objects (or those with the given ns if any)
         marker_pub_->publish(marker_msg_);
 
-        RCLCPP_INFO( this->get_logger(), "x_min: %.3f,\ty_min: %.3f,\tz_min: %.3f", x_s_min,y_s_min,z_s_min);
-        RCLCPP_INFO( this->get_logger(), "lat: %.3f,\tcb_hz: %.2f", cb_latency_, cb_hz_);
+        RCLCPP_INFO(this->get_logger(), "x_min: %.3f,\ty_min: %.3f,\tz_min: %.3f", x_s_min,y_s_min,z_s_min);
+        RCLCPP_INFO(this->get_logger(), "lat: %.3f,\tcb_hz: %.2f", cb_latency_, cb_hz_);
       }
     }
 
