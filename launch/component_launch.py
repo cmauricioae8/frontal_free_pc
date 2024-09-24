@@ -1,4 +1,4 @@
-# launch file to create a container and to load a component
+# launch file to create a container and to load the component
 import launch
 import os
 from ament_index_python.packages import get_package_share_directory

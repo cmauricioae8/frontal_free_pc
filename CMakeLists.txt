@@ -33,6 +33,9 @@ add_library(frontal_free_pc_component SHARED src/component_node.cpp)
 ament_target_dependencies(frontal_free_pc_component ${dependencies} rclcpp_components)
 rclcpp_components_register_nodes(frontal_free_pc_component "free_pc_ns::FrontalFreePC")
 
+include_directories(
+  include
+)
 
 install(TARGETS
   # frontal_free_pc
@@ -43,7 +46,7 @@ install(TARGETS
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
-  )
+)
 
 install(DIRECTORY launch params rviz
   DESTINATION share/${PROJECT_NAME}

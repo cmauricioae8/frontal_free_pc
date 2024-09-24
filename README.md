@@ -4,10 +4,20 @@
 ROS 2 package to obtain the nearest point in front of robot. The node and its component version are included, for comparison purposes.
 The nearest point is published on 'frontal_free_pc/point' topic for debugging.
 
+[![Build Status](https://build.ros2.org/buildStatus/icon?&subject=Humble%20Build)]()
+
 
 **Author:** C. Mauricio Arteaga-Escamilla from "Robotica Posgrado"<br>
 **Contact email:** cmauricioae8@gmail.com<br>
 **LinkedIn:** https://linkedin.com/in/cruz-mauricio-arteaga-escamilla/<br>
+
+
+## Table of Contents 
+1. [Building this package](#building-this-package)
+2. [frontal_free_pc functionality](#frontal_free_pc-functionality)
+3. [Usage](#usage)
+4. [Expected result](#expected-result)
+5. [Possible errors and reasons](#possible-errors-and-reasons)
 
 
 ## Building this package
@@ -24,8 +34,9 @@ rosdep install -i --from-path src --rosdistro $ROS_DISTRO -y
 If you already have all your dependencies, the console will return:<br>
 #All required rosdeps installed successfully
 
-**Note:** _This is made only once for the whole workspace._
-<br>
+> [!NOTE]
+> This is made only once for the whole workspace.
+
 
 
 To build this package:
@@ -41,7 +52,8 @@ frontal_free_pc
     free_pc_ns::FrontalFreePC
 ```
 
-**IMPORTANT:** By default, the example 'frontal_free_pc' node is NOT generated. If user wants to create the corresponding node, it is required to comment the component creation lines in the 'CMakeLists.txt', to first generate the node. If all lines are not comment, the component will be created only.
+> [!IMPORTANT]
+> By default, the example 'frontal_free_pc' node is NOT generated. If user wants to create the corresponding node, <span style="color:green">**it is required to comment the component creation lines in the 'CMakeLists.txt', to first generate the node.**</span>  If all lines are not comment, the component will be created only.
 
 
 
@@ -69,7 +81,7 @@ depth distance of the nearest point.
 
 ### Subscribed topics
 
-* `cloud` (sensor_msgs/msg/PointCloud)<br>
+- `cloud` (sensor_msgs/msg/PointCloud)<br>
     The input point cloud. This topic frequency is checked to inform data status.
 
 ### Parameters
@@ -86,7 +98,7 @@ depth distance of the nearest point.
 **Note:** Params fixed cannot be modified at runtime. 
 
 
-## Usage
+## Usage :rocket:
 
 To test the frontal_free_pc functionality, `loading the component`
 
@@ -158,3 +170,5 @@ rviz2 -d ~/colcon_ws/src/frontal_free_pc/rviz/frontal_free_pc.rviz
 + Point not shown in Rviz: the 'Fixed Frame' is not the 'target_frame' in Rviz
 
 + `frontal_free_pc` node does not exist: the node config was not set in 'CMakeLists.txt' when building
+
+Return to [Table of Contents](#table-of-contents)
